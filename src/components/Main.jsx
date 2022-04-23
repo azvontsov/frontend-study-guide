@@ -6,8 +6,8 @@ import Show from "../pages/Show";
 const Main = (props) => {
   const [cards, setCards] = useState(null);
 
-  const URL = "http://localhost:3001/cards";
-  //   const URL = "https://study-guide-az.herokuapp.com/";
+  //   const URL = "http://localhost:3001/cards";
+  const URL = "https://study-guide-az.herokuapp.com/cards";
 
   const getCard = async () => {
     const response = await fetch(URL);

@@ -59,29 +59,29 @@ function Index(props) {
         <input
           type="text"
           value={newForm.question}
-          question="question"
+          name="question"
           placeholder="question"
           onChange={handleChange}
         />
         <input
           type="text"
           value={newForm.overview}
-          overview="overview"
+          name="overview"
           placeholder="overview"
           onChange={handleChange}
         />
         <input
           type="text"
           value={newForm.tips}
-          tips="tips"
+          name="tips"
           placeholder="tips"
           onChange={handleChange}
         />
         <input
           type="text"
           value={newForm.answerFramework}
-          answerFramework="answerFramework"
-          placeholder="answerFramework"
+          name="answerFramework"
+          placeholder="answer framework"
           onChange={handleChange}
         />
         <input
@@ -91,7 +91,6 @@ function Index(props) {
           placeholder="answer"
           onChange={handleChange}
         />
-
         <input type="submit" value="Create Card with Question" />
       </form>
       {props.cards ? loaded() : loading()}
