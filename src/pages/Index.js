@@ -4,11 +4,10 @@ import { useState } from "react";
 function Index(props) {
   // state to hold formData
   const [newForm, setNewForm] = useState({
-    key: "",
     question: "",
     overview: "",
     tips: "",
-    answerFramework: "",
+    framework: "",
     answer: "",
   });
 
@@ -16,20 +15,20 @@ function Index(props) {
   const handleChange = (event) => {
     setNewForm((prevState) => ({
       ...prevState,
-      [event.target.question]: event.target.value,
+      [event.target.name]: event.target.value,
     }));
   };
 
   // handle submit function for form
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("trying to submit", newForm);
     props.createCard(newForm);
     setNewForm({
-      key: "",
       question: "",
       overview: "",
       tips: "",
-      answerFramework: "",
+      framework: "",
       answer: "",
     });
   };
@@ -43,8 +42,8 @@ function Index(props) {
         </Link>
         <p>{item.overview}</p>
         <p>{item.tips}</p>
-        <p>{item.answerFramework}</p>
-        <h2>{item.answer}</h2>
+        <p>{item.framework}</p>
+        <h4>{item.answer}</h4>
       </div>
     ));
   };
@@ -63,6 +62,7 @@ function Index(props) {
           placeholder="question"
           onChange={handleChange}
         />
+        <br />
         <input
           type="text"
           value={newForm.overview}
@@ -70,6 +70,8 @@ function Index(props) {
           placeholder="overview"
           onChange={handleChange}
         />
+        <br />
+
         <input
           type="text"
           value={newForm.tips}
@@ -77,22 +79,27 @@ function Index(props) {
           placeholder="tips"
           onChange={handleChange}
         />
+        <br />
         <input
           type="text"
-          value={newForm.answerFramework}
-          name="answerFramework"
-          placeholder="answer framework"
+          value={newForm.framework}
+          name="framework"
+          placeholder="framework"
           onChange={handleChange}
         />
+        <br />
         <input
           type="text"
           value={newForm.answer}
-          answer="answer"
+          name="answer"
           placeholder="answer"
           onChange={handleChange}
         />
+        <br />
+        <br />
         <input type="submit" value="Create Card with Question" />
       </form>
+      <br />
       {props.cards ? loaded() : loading()}
     </section>
   );

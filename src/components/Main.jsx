@@ -6,8 +6,8 @@ import Show from "../pages/Show";
 const Main = (props) => {
   const [cards, setCards] = useState(null);
 
-  //   const URL = "http://localhost:3001/cards";
-  const URL = "https://study-guide-az.herokuapp.com/cards";
+  const URL = "http://localhost:3001/cards/";
+  //   const URL = "https://study-guide-az.herokuapp.com/cards/";
 
   const getCard = async () => {
     const response = await fetch(URL);
@@ -59,14 +59,24 @@ const Main = (props) => {
         </Route>
         <Route
           path="/cards/:id"
-          render={(rp) => (
-            <Show
-              cards={cards}
-              updateCard={updateCard}
-              deleteCard={deleteCard}
-              {...rp}
-            />
-          )}
+          render={(rp) => {
+            if (cards === null) {
+              return <h1>Loading...</h1>;
+            }
+            const id = rp.match.params.id;
+            console.log(id, cards);
+            const card = cards.find(({ _id }) => id === _id);
+            return (
+              <Show
+                card={card}
+                updateCard={(formData) => updateCard(formData, id)}
+                deleteCard={() => {
+                  deleteCard(id);
+                  rp.history.push("/");
+                }}
+              />
+            );
+          }}
         />
       </Switch>
     </main>
