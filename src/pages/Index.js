@@ -19,9 +19,13 @@ function Index(props) {
   return (
     <section>
       <div className="question-container">
-        <h1>Common Questions</h1>
+        <div className="name-container">
+          <h1>Common Questions</h1>
+        </div>
+        <div className="question-area">
+          {props.cards ? loaded() : loading()}
+        </div>
       </div>
-      {props.cards ? loaded() : loading()}
     </section>
   );
 }

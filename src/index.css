@@ -8,7 +8,6 @@ html {
 }
 body {
   background: #eee;
-  padding: 0 16px;
 }
 
 nav {
@@ -46,10 +45,10 @@ footer p {
 }
 .card {
   background: #fff;
-  border-radius: 0 7px 7px 0;
+
   margin-bottom: 2px;
   padding: 10px;
-  width: 350px;
+  width: 380px;
   position: relative;
 }
 .card h1 {
@@ -62,21 +61,42 @@ footer p {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.card a {
+  text-decoration: none;
+}
 
 textarea {
   resize: none;
 }
 
-.card-container {
+.container {
+  padding-left: 2rem;
+}
+
+.question-container {
+  border-radius: 10px 0 0 10px;
   display: flex;
   flex-direction: column;
-  background-color: #f5ba13;
+  width: 380px;
+  height: 4rem;
+  background: #f5ba13;
+  margin-top: 2rem;
+  height: 82vh;
+  box-shadow: 6px 0 10px rgb(181, 181, 181);
 }
-.question-container {
-  background-color: #ccc;
-  height: 92vh;
-  z-index: -10;
+.name-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+.question-area {
+  margin-top: 3rem;
+
+  background: #f5ba13;
+  height: 75vh;
+
   position: absolute;
+  overflow: scroll;
 }
 
 .btns button {

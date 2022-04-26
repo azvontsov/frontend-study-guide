@@ -55,37 +55,35 @@ const Main = (props) => {
   return (
     <main>
       <div className="container">
-        <div className="card-container">
-          <Switch>
-            <Route exact path="/">
-              <Index cards={cards} createCard={createCard} />
-            </Route>
-            <Route exact path="/create">
-              <Card cards={cards} createCard={createCard} />
-            </Route>
-            <Route
-              path="/cards/:id"
-              render={(rp) => {
-                if (cards === null) {
-                  return <h1>Loading...</h1>;
-                }
-                const id = rp.match.params.id;
+        <Switch>
+          <Route exact path="/">
+            <Index cards={cards} createCard={createCard} />
+          </Route>
+          <Route exact path="/create">
+            <Card cards={cards} createCard={createCard} />
+          </Route>
+          <Route
+            path="/cards/:id"
+            render={(rp) => {
+              if (cards === null) {
+                return <h1>Loading...</h1>;
+              }
+              const id = rp.match.params.id;
 
-                const card = cards.find(({ _id }) => id === _id);
-                return (
-                  <Show
-                    card={card}
-                    updateCard={(formData) => updateCard(formData, id)}
-                    deleteCard={() => {
-                      deleteCard(id);
-                      rp.history.push("/");
-                    }}
-                  />
-                );
-              }}
-            />
-          </Switch>
-        </div>
+              const card = cards.find(({ _id }) => id === _id);
+              return (
+                <Show
+                  card={card}
+                  updateCard={(formData) => updateCard(formData, id)}
+                  deleteCard={() => {
+                    deleteCard(id);
+                    rp.history.push("/");
+                  }}
+                />
+              );
+            }}
+          />
+        </Switch>
       </div>
     </main>
   );
