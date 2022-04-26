@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import { AiOutlineEdit } from "react-icons/ai";
+import { MdDeleteForever } from "react-icons/md";
+
 function Show(props) {
   const item = props.card;
   console.log(item);
@@ -23,12 +26,18 @@ function Show(props) {
       <h1>{item.question}</h1>
       <h2>{item.answer}</h2>
 
-      <button id="delete" onClick={props.deleteCard}>
-        DELETE
-      </button>
-
+      <div className="btns">
+        <button style={{ color: "red" }}>
+          <AiOutlineEdit />
+        </button>
+        <button style={{ color: "red" }} id="delete" onClick={props.deleteCard}>
+          <MdDeleteForever />
+        </button>
+      </div>
       <form onSubmit={handleSubmit}>
-        <input
+        <textarea
+          rows="5"
+          cols="30"
           type="text"
           name="question"
           placeholder="Question"
@@ -36,7 +45,9 @@ function Show(props) {
           onChange={handleChange}
         />
         <br />
-        <input
+        <textarea
+          rows="5"
+          cols="30"
           type="text"
           name="overview"
           placeholder="Overview"
@@ -44,7 +55,9 @@ function Show(props) {
           onChange={handleChange}
         />
         <br />
-        <input
+        <textarea
+          rows="5"
+          cols="30"
           type="text"
           name="tips"
           placeholder="Tips"
@@ -52,7 +65,9 @@ function Show(props) {
           onChange={handleChange}
         />
         <br />
-        <input
+        <textarea
+          rows="5"
+          cols="30"
           type="text"
           name="framework"
           placeholder="framework"
@@ -61,7 +76,9 @@ function Show(props) {
         />
         <br />
 
-        <input
+        <textarea
+          rows="5"
+          cols="30"
           type="text"
           name="answer"
           placeholder="Answer"

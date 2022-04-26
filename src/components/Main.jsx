@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
+import Card from "./Card";
 
 const Main = (props) => {
   const [cards, setCards] = useState(null);
@@ -53,32 +54,39 @@ const Main = (props) => {
 
   return (
     <main>
-      <Switch>
-        <Route exact path="/">
-          <Index cards={cards} createCard={createCard} />
-        </Route>
-        <Route
-          path="/cards/:id"
-          render={(rp) => {
-            if (cards === null) {
-              return <h1>Loading...</h1>;
-            }
-            const id = rp.match.params.id;
-            console.log(id, cards);
-            const card = cards.find(({ _id }) => id === _id);
-            return (
-              <Show
-                card={card}
-                updateCard={(formData) => updateCard(formData, id)}
-                deleteCard={() => {
-                  deleteCard(id);
-                  rp.history.push("/");
-                }}
-              />
-            );
-          }}
-        />
-      </Switch>
+      <div className="container">
+        <div className="card-container">
+          <Switch>
+            <Route exact path="/">
+              <Index cards={cards} createCard={createCard} />
+            </Route>
+            <Route exact path="/create">
+              <Card cards={cards} createCard={createCard} />
+            </Route>
+            <Route
+              path="/cards/:id"
+              render={(rp) => {
+                if (cards === null) {
+                  return <h1>Loading...</h1>;
+                }
+                const id = rp.match.params.id;
+
+                const card = cards.find(({ _id }) => id === _id);
+                return (
+                  <Show
+                    card={card}
+                    updateCard={(formData) => updateCard(formData, id)}
+                    deleteCard={() => {
+                      deleteCard(id);
+                      rp.history.push("/");
+                    }}
+                  />
+                );
+              }}
+            />
+          </Switch>
+        </div>
+      </div>
     </main>
   );
 };
